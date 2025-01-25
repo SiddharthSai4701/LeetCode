@@ -29,7 +29,44 @@ Constraints:
 s consists only of printable ASCII characters.
 """
 
+# My solution
 
+# class Solution(object):
+#     def isPalindrome(self, s):
+#         """
+#         :type s: str
+#         :rtype: bool
+#         """
+
+#         t = ""
+
+#         for i in s:
+#             if (
+#                 (ord(i) >= 48 and ord(i) <= 57)
+#                 or (ord(i) >= 65 and ord(i) <= 90)
+#                 or (ord(i) >= 97 and ord(i) <= 122)
+#             ):
+#                 t += i.lower()
+
+#         left = 0
+#         right = len(t) - 1
+
+#         while left <= right:
+#             if t[left] != t[right]:
+#                 return False
+#             left += 1
+#             right -= 1
+
+#         return True
+
+
+# s = Solution()
+# print(s.isPalindrome("abba"))
+# print(s.isPalindrome("A man, a plan, a canal: Panama"))
+# print(s.isPalindrome("0P"))
+# print(s.isPalindrome("Marge, let\'s '[went].' I await {news} telegram."))
+
+# Greg's solution
 class Solution(object):
     def isPalindrome(self, s):
         """
@@ -37,24 +74,23 @@ class Solution(object):
         :rtype: bool
         """
 
-        t = ""
+        n = len(s)
+        l = 0
+        r = n - 1
 
-        for i in s:
-            if (
-                (ord(i) >= 48 and ord(i) <= 57)
-                or (ord(i) >= 65 and ord(i) <= 90)
-                or (ord(i) >= 97 and ord(i) <= 122)
-            ):
-                t += i.lower()
+        while l < r:
+            if not s[l].isalnum():
+                l += 1
+                continue
+            if not s[r].isalnum():
+                r -= 1
+                continue
 
-        left = 0
-        right = len(t) - 1
-
-        while left <= right:
-            if t[left] != t[right]:
+            if s[l].lower() != s[r].lower():
                 return False
-            left += 1
-            right -= 1
+
+            l += 1
+            r -= 1
 
         return True
 
@@ -63,4 +99,4 @@ s = Solution()
 print(s.isPalindrome("abba"))
 print(s.isPalindrome("A man, a plan, a canal: Panama"))
 print(s.isPalindrome("0P"))
-print(s.isPalindrome("Marge, let\'s '[went].' I await {news} telegram."))
+print(s.isPalindrome("Marge, let's '[went].' I await {news} telegram."))
