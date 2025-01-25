@@ -22,6 +22,19 @@ s[i] is a printable ascii character.
 """
 
 # Lol this technically works - accepted by leetcode, but let's use two pointers
+# class Solution(object):
+#     def reverseString(self, s):
+#         """
+#         :type s: List[str]
+#         :rtype: None Do not return anything, modify s in-place instead.
+#         """
+
+#         s.reverse()
+
+# s = Solution()
+# print(s.reverseString(["h", "e", "l", "l", "o"]))
+
+
 class Solution(object):
     def reverseString(self, s):
         """
@@ -29,7 +42,13 @@ class Solution(object):
         :rtype: None Do not return anything, modify s in-place instead.
         """
 
-        s.reverse()
+        l = 0
+        r = len(s) - 1
 
-s = Solution()
-print(s.reverseString(["h", "e", "l", "l", "o"]))
+        while l < r:
+            s[l], s[r] = s[r], s[l]
+            l += 1
+            r -= 1
+        print(s)
+
+
