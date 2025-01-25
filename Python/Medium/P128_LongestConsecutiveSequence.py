@@ -24,7 +24,7 @@ Constraints:
 """
 Greg's solution
 
-Approach
+Approach:
 
 Create a set of the nums array.
 
