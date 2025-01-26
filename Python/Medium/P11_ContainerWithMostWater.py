@@ -28,7 +28,7 @@ n == height.length
 0 <= height[i] <= 104
 """
 
-
+# My Solution
 class Solution(object):
     def maxArea(self, height):
         """
@@ -49,7 +49,6 @@ class Solution(object):
             else:
                 r-=1
         return a
-
 
 s = Solution()
 print(s.maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))
