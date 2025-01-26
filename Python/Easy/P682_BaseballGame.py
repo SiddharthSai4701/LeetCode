@@ -74,10 +74,10 @@ class Solution(object):
                     if l:
                         l.pop()
                 case "D":
-                    l.append(2 * int(l[-1]))
+                    l.append(2 * l[-1])
                 case "+":
                     if len(l) >= 2:
-                        l.append(int(l[-1]) + int(l[-2]))
+                        l.append(l[-1] + l[-2])
                 case _:
                     l.append(int(i))
 
