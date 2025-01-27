@@ -41,45 +41,80 @@ Constraints:
 1 <= tokens.length <= 104
 tokens[i] is either an operator: "+", "-", "*", or "/", or an integer in the range [-200, 200].
 """
+# from typing import List
+# class Solution:
+#     def evalRPN(self, tokens: List[str]) -> int:
+#         operands = ("+", "-", "*", "/")
+#         stack = []
+#         total = 0
+
+#         for i in tokens:
+
+#             if i not in operands:
+#                 stack.append(int(i))
+#             else:
+#                 if len(stack) >=2:
+#                     secondValue = stack.pop()
+#                     firstValue = stack.pop()
+
+#                     match i:
+#                         case "+":
+#                             total = firstValue + secondValue
+
+#                         case "-":
+#                             total = firstValue - secondValue
+
+#                         case "*":
+#                             total = firstValue * secondValue
+
+#                         case "/":
+#                             total = firstValue / secondValue
+
+#                 stack.append(int(total))
+
+#         if stack:
+#             return sum(stack)
+
+#         return total
+
+# s = Solution()
+# # print(s.evalRPN(["2", "1", "+", "3", "*"]))
+# # print(s.evalRPN(["18"]))
+# # print(s.evalRPN(["4", "13", "5", "/", "+"]))
+# print(s.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]))
+# # print(s.evalRPN(["4", "13", "5", "/", "+"]))
+
+# Greg's solution
 from typing import List
+from math import ceil, floor
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        operands = ("+", "-", "*", "/")
-        stack = []
-        total = 0
+        stk = []
+        for t in tokens:
+            if t in "+=*/":
+                b, a = stk.pop(), stk.pop()
 
-        for i in tokens:
-
-            if i not in operands:
-                stack.append(int(i))
+                if t == "+":
+                    stk.append(a + b)
+                elif t == "-":
+                    stk.append(a - b)
+                elif t == "*":
+                    stk.append(a * b)
+                elif t == "/":
+                    division = a / b
+                    if division > 0:
+                        stk.append(floor(division))
+                    else:
+                        stk.append(ceil(division))
             else:
-                if len(stack) >=2:
-                    secondValue = stack.pop()
-                    firstValue = stack.pop()
+                stk.append(int(t))
 
-                    match i:
-                        case "+":
-                            total = firstValue + secondValue
+        return stk[0]
 
-                        case "-":
-                            total = firstValue - secondValue
-
-                        case "*":
-                            total = firstValue * secondValue
-
-                        case "/":
-                            total = firstValue / secondValue
-                            
-                stack.append(int(total))
-
-        if stack:
-            return sum(stack)
-
-        return total
 
 s = Solution()
 # print(s.evalRPN(["2", "1", "+", "3", "*"]))
 # print(s.evalRPN(["18"]))
 # print(s.evalRPN(["4", "13", "5", "/", "+"]))
-print(s.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]))
-# print(s.evalRPN(["4", "13", "5", "/", "+"]))
+# print(s.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]))
+print(s.evalRPN(["4", "3", "-"]))

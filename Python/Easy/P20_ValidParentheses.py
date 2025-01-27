@@ -69,7 +69,7 @@ s consists of parentheses only '()[]{}'.
 # print(s.isValid("["))
 # # print(s.isValid("(]"))
 
-# Grerg's solution
+# Greg's solution
 class Solution:
     def isValid(self, s: str) -> bool:
         brackets = {
