@@ -40,31 +40,59 @@ Constraints:
 s consists of parentheses only '()[]{}'.
 """
 
+# class Solution:
+#     def isValid(self, s: str) -> bool:
+#         stack = []
+
+#         if len(s) % 2 != 0:
+#             return False
+
+#         for i in s:
+#             if i == "(" or i == "[" or i == "{":
+#                 stack.append(i)
+#             else:
+#                 if stack:
+#                     bracket = stack.pop()
+#                     if (i == "]" and bracket == "[") or (i == ")" and bracket == "(") or (i == "}" and bracket == "{"):
+#                         continue
+#                     else:
+#                         return False
+
+#                 else:
+#                     return False
+#         if len(stack) == 0:
+#             return True
+#         return False
+
+
+# s = Solution()
+# print(s.isValid("["))
+# # print(s.isValid("(]"))
+
+# Grerg's solution
 class Solution:
     def isValid(self, s: str) -> bool:
+        brackets = {
+            ')': '(',
+            '}': '{',
+            ']': '['
+        }
+
         stack = []
 
-        if len(s) % 2 != 0:
-            return False
-
-        for i in s:
-            if i == "(" or i == "[" or i == "{":
-                stack.append(i)
+        for c in s:
+            if c not in brackets:
+                stack.append(c)
             else:
-                if stack:
-                    bracket = stack.pop()
-                    if (i == "]" and bracket == "[") or (i == ")" and bracket == "(") or (i == "}" and bracket == "{"):
-                        continue
-                    else:
-                        return False
-
-                else:
+                if not stack:
                     return False
-        if len(stack) == 0:
-            return True
-        return False
-    
+                else:
+                    popped = stack.pop()
+                    if popped != brackets[c]:
+                        return False
+        return not stack
+
 
 s = Solution()
-print(s.isValid("["))
-# print(s.isValid("(]"))
+# print(s.isValid("["))
+print(s.isValid("(]"))
