@@ -39,24 +39,56 @@ Methods pop, top and getMin operations will always be called on non-empty stacks
 At most 3 * 104 calls will be made to push, pop, top, and getMin.
 """
 
+# class MinStack:
+
+#     def __init__(self):
+#         self.stack = []
+
+#     def push(self, val: int) -> None:
+#         self.stack.append(val)
+#         # print(self.stack)
+
+
+#     def pop(self) -> None:
+#         self.stack.pop(-1)
+
+#     def top(self) -> int:
+#         return self.stack[-1]
+
+#     def getMin(self) -> int:
+#         return min(self.stack)
+
+
+# # Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(5)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
+
+# Greg's solution - a much better one
 class MinStack:
 
     def __init__(self):
         self.stack = []
+        self.min_stack = []
 
     def push(self, val: int) -> None:
         self.stack.append(val)
-        # print(self.stack)
-        
+        if not self.min_stack:
+            self.min_stack.append(val)
+        else:
+            self.min_stack.append(min(self.min_stack[-1], val))
 
     def pop(self) -> None:
-        self.stack.pop(-1)
+        self.stack.pop()
+        self.min_stack.pop()
 
     def top(self) -> int:
         return self.stack[-1]
 
     def getMin(self) -> int:
-        return min(self.stack)
+        return self.min_stack[-1]
 
 
 # Your MinStack object will be instantiated and called as such:
