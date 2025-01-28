@@ -38,12 +38,7 @@ class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         curr = head
 
-        # print("val: ",curr.val)
-        # print("next: ",curr.next)
-
         while curr and curr.next:
-            # print("Curr is: ", curr)
-            # print("Curr.next is: ", curr.next)
             if curr.val == curr.next.val:
                 curr.next = curr.next.next
             else:
