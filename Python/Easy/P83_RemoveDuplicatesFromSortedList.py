@@ -45,6 +45,7 @@ class Solution:
                 curr = curr.next
         return head
     
+    # Added for easy visualization - not part of LeetCode solution
     def display(self, head):
         curr = head
         elements = []
