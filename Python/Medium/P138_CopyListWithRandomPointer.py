@@ -111,7 +111,7 @@ class Solution:
             new_node.random = old_to_new_node_map[curr.random] if curr.random else None
             curr = curr.next
 
-        old_to_new_node_map[head]
+        return old_to_new_node_map[head]
 
     # Added for easy visualization - not part of LeetCode solution
     def display(self, head):
