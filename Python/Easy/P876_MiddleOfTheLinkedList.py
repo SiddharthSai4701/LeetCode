@@ -106,10 +106,73 @@ Stop when fast becomes None
 
 Return the node which slow is pointing to
 """
+# from typing import Optional
+
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+#     def __str__(self):
+#         return str(self.val)
+
+
+# class Solution:
+#     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         dummyNode = ListNode()
+
+#         dummyNode.next = head
+
+#         slow = fast = dummyNode
+
+#         while fast:
+#             slow = slow.next
+#             if fast.next is None:
+#                 return slow
+#             fast = fast.next.next
+
+#         return slow
+
+
+#     # Added for easy visualization - not part of LeetCode solution
+#     def display(self, head):
+#         curr = head
+#         elements = []
+
+#         while curr:
+#             elements.append(str(curr.val))
+#             curr = curr.next
+#         print(" -> ".join(elements))
+
+
+# Node1 = ListNode(1)
+# Node2 = ListNode(2)
+# Node3 = ListNode(3)
+# Node4 = ListNode(4)
+# Node5 = ListNode(5)
+# Node6 = ListNode(6)
+
+# Node1.next = Node2
+# Node2.next = Node3
+# Node3.next = Node4
+# Node4.next = Node5
+# Node5.next = Node6
+
+
+# s = Solution()
+# s.display(Node1)
+# midNode = s.middleNode(Node1)
+# s.display(midNode)
+
+
+####################################################################################################
+
+"""
+Greg's Solution - same as my second solution but a little more elegantly written xD
+"""
+
 from typing import Optional
-import math
-
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -122,21 +185,12 @@ class ListNode:
 
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummyNode = ListNode()
-
-        dummyNode.next = head
-
-        slow = fast = dummyNode
-
-        while fast:
-            slow = slow.next
-            if fast.next is None:
-                return slow
-            fast = fast.next.next
+        slow = fast = head
         
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
         return slow
-
-
 
     # Added for easy visualization - not part of LeetCode solution
     def display(self, head):
