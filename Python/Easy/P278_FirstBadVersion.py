@@ -46,37 +46,66 @@ If not, we've landed on the last good version so the next one must be bad. Retur
 This problem is an interesting variation of Binary Search
 """
 
-# The isBadVersion API is already defined for you.
-def isBadVersion(version: int, bad=2) -> bool: # My def of isBadVersion...ignore
-    print("VERSION: ",version)
+# # The isBadVersion API is already defined for you.
+# def isBadVersion(version: int, bad=2) -> bool: # My def of isBadVersion...ignore
+#     print("VERSION: ",version)
+#     if version >= bad:
+#         return True
+#     return False
+
+# def createArray(n: int): # Function written for my convenience...ignore
+#     print([i for i in range(1,n+1)])
+
+# # My solution
+# class Solution:
+#     def firstBadVersion(self, n: int) -> int:
+#         L = 1
+#         R = n
+
+#         while L <= R:
+#             M = L + (R - L) // 2
+#             result = isBadVersion(M)
+
+#             if result:
+#                 R = M - 1
+#             else:
+#                 L = M + 1
+
+#         if not isBadVersion(M):
+#             return M + 1
+#         else:
+#             return M
+
+
+# s = Solution()
+# createArray(3)
+# print(s.firstBadVersion(3))
+
+##########################################################################################
+# Greg's Solution
+
+def isBadVersion(version: int, bad=4) -> bool:
     if version >= bad:
         return True
     return False
 
-def createArray(n: int): # Function written for my convenience...ignore
-    print([i for i in range(1,n+1)])
 
-# My solution
 class Solution:
     def firstBadVersion(self, n: int) -> int:
         L = 1
         R = n
 
-        while L <= R:
+        while L < R:
             M = L + (R - L) // 2
-            result = isBadVersion(M)
 
-            if result:
-                R = M - 1
+            if isBadVersion(M):
+                R = M
             else:
                 L = M + 1
-
-        if not isBadVersion(M):
-            return M + 1
-        else:
-            return M
+        
+        # When we break out of the loop, L, R and M will be equal so we can return any of them
+        return M
 
 
 s = Solution()
-createArray(3)
-print(s.firstBadVersion(3))
+print(s.firstBadVersion(5))
