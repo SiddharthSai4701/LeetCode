@@ -29,14 +29,33 @@ s1.length == s2.length
 s1 and s2 consist of only lowercase English letters.
 """
 # My Solution
+# from collections import Counter
+# class Solution:
+#     def areAlmostEqual(self, s1: str, s2: str) -> bool:
+#         if set(s1) != set(s2) or Counter(s1) != Counter(s2):
+#             return False
+#         l = len(s1)
+#         count = 0
+#         for i in range(l):
+#             if s1[i] != s2[i]:
+#                 count += 1
+#         return count == 0 or count == 2
+
+#################################################################################################
+
 from collections import Counter
 class Solution:
     def areAlmostEqual(self, s1: str, s2: str) -> bool:
-        if set(s1) != set(s2) or Counter(s1) != Counter(s2):
-            return False
-        l = len(s1)
-        count = 0
-        for i in range(l):
+        indexes = []
+        for i in range(len(s1)):
             if s1[i] != s2[i]:
-                count += 1
-        return count == 0 or count == 2
+                indexes.append(i)
+            if len(indexes) > 2:
+                return False
+            
+        if len(indexes) == 2:
+            i, j = indexes
+            return s1[i] == s2[j] and s1[j] == s2[i]
+        
+        return len(indexes) == 0
+        
