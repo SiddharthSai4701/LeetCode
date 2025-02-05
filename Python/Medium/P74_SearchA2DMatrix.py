@@ -112,35 +112,66 @@ So, first do a binary search to identify which row the target lies in. This can 
 ###########################################################################################################################
 
 # Second solution - worked like a charm
-from typing import List
+# from typing import List
 
+# class Solution:
+#     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+#         m = len(matrix)
+#         n = len(matrix[0])
+
+#         L_i  = 0
+#         R_i = m - 1
+
+#         while L_i <= R_i:
+#             # This will point me to a row
+#             M_i = L_i + (R_i - L_i) // 2
+
+#             if target in matrix[M_i]:
+#                 return True
+
+#             elif target < matrix[M_i][0]:
+#                 R_i = M_i - 1
+
+#             elif target > matrix[M_i][n - 1]:
+#                 L_i = M_i + 1
+
+#             else:
+#                 return False
+
+
+#         return False
+
+
+# s = Solution()
+# print(s.searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 13))
+
+#####################################################################################################################################
+
+# Greg's approach - treat the matrix as if it were a 1D array...essentially, deal with the matrix as if it were flattened out
+from typing import List
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         m = len(matrix)
         n = len(matrix[0])
+        t = m * n # This will give the total number of elements. We will iterate between 0 and t - 1
+        l = 0
+        r = t - 1
 
-        L_i  = 0
-        R_i = m - 1
+        while l <= r:
+            m = (l+r) // 2
+            i = m // n # This gives us the row
+            j = m % n # This gives us the column
 
-        while L_i <= R_i:
-            # This will point me to a row
-            M_i = L_i + (R_i - L_i) // 2
+            mid_num = matrix[i][j]
 
-            if target in matrix[M_i]:
+            # After this it's the regular binary search
+            if target == mid_num:
                 return True
-
-            elif target < matrix[M_i][0]:
-                R_i = M_i - 1
-
-            elif target > matrix[M_i][n - 1]:
-                L_i = M_i + 1
-
+            elif target < mid_num:
+                r = m - 1
             else:
-                return False
-
+                l = m + 1
 
         return False
-
-
 s = Solution()
 print(s.searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 13))
