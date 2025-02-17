@@ -71,6 +71,7 @@ class Solution:
                 seen.remove(s[L])
                 L += 1
 
+            # Because we're always looking at at least 1 character
             w = R - L + 1
             longest = max(longest, w)
             seen.add(s[R])
