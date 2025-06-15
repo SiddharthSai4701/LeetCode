@@ -51,11 +51,11 @@ echo.
 echo Committing with message "Solved !PROBLEM_NUM!"...
 git commit -m "Solved !PROBLEM_NUM!"
 
-if errorlevel 1 (
-    echo Error: Failed to commit (maybe no changes to commit?)
-    pause
-    exit /b 1
-)
+@REM if errorlevel 1 (
+@REM     echo Error: Failed to commit (maybe no changes to commit?)
+@REM     pause
+@REM     exit /b 1
+@REM )
 
 echo.
 echo Pushing to remote repository...
